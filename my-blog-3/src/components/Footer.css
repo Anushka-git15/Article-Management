@@ -100,18 +100,40 @@
 
 /* ================= RESPONSIVE ================= */
 
-@media(max-width:768px){
 
-    .footer-content{
-        padding:40px 20px;
-    }
+@media (max-width:768px){
 
-    .footer-content h2{
-        font-size:1.6rem;
-    }
+.footer{
+    margin-top:50px;
+}
 
-    .footer-links{
-        gap:18px;
-    }
+.footer-content{
+    padding:35px 18px;
+}
+
+.footer-content h2{
+    font-size:1.5rem;
+}
+
+.footer-content p{
+    font-size:15px;
+    line-height:1.6;
+}
+
+.footer-links{
+    gap:12px;
+}
+
+.footer-links a{
+    font-size:15px;
+}
+
+.footer hr{
+    width:90%;
+}
+
+.copyright{
+    font-size:13px;
+}
 
 }
