@@ -6,7 +6,7 @@ app.use(express.json());
 
 const withDB = async (operation, res) => {
     try {
-        const client = await MongoClient.connect('mongodb+srv://anushkachateerjee15_db_user:anushkachateerjee15@cluster0.1t5pf4r.mongodb.net/');
+        const client = await MongoClient.connect('mongodb+srv://anushkachateerjee15_db_user:anushkachateerjee15@cluster0.1t5pf4r.mongodb.net/my-blog');
 
         const db = client.db('my-blog');
 
