@@ -137,7 +137,8 @@
 @media (max-width: 768px) {
 
     .home-page{
-        padding:25px 18px 50px;
+        padding:25px 14px 50px;
+    
     }
 
     .home-page h1{
@@ -167,7 +168,7 @@
 
     .home-highlight{
         margin-top:50px;
-        padding:22px;
+        padding:22px 16px;
         border-radius:18px;
     }
 
