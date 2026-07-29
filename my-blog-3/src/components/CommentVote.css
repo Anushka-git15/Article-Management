@@ -1,22 +1,25 @@
 .comment-vote{
     display:flex;
     align-items:center;
-    gap:12px;
-    margin-top:0;
     justify-content:flex-end;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:12px;
 }
 
 .comment-vote button{
     display:flex;
     align-items:center;
+    justify-content:center;
     gap:6px;
     padding:8px 14px;
     border:none;
-    border-radius:8px;
-    font-size:15px;
+    border-radius:10px;
+    font-size:14px;
     font-weight:600;
     cursor:pointer;
-    transition:all .3s ease;
+    transition:background .3s ease,
+               transform .3s ease;
 }
 
 .comment-vote button:first-child{
@@ -37,4 +40,21 @@
 .comment-vote button:last-child:hover{
     background:#fecaca;
     transform:translateY(-2px);
+}
+
+@media (max-width:768px){
+
+.comment-vote{
+    justify-content:center;
+    gap:8px;
+    width:100%;
+}
+
+.comment-vote button{
+    flex:1;
+    min-width:100px;
+    padding:10px;
+    font-size:14px;
+}
+
 }
