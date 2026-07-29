@@ -53,7 +53,7 @@
 .comment-vote{
     justify-content:flex-start;
     flex-wrap:wrap;
-    gap:8px;
+    gap:10px;
     width:100%;
 }
 .comment-vote button{
@@ -61,6 +61,7 @@
     min-width:100px;
     padding:10px;
     font-size:14px;
+    justify-content:center;
 }
 
 }
