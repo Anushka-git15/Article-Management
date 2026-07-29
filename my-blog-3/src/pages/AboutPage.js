@@ -1,63 +1,130 @@
-import React, { Component } from "react";
-import "./AboutPage.css";
+import React, { Component } from 'react';
+import articleContent from '../pages/article-content';
+import ArticleList from '../components/ArticleList';
+import { useParams } from 'react-router-dom';
+import CommentsList from '../components/CommentsList';
+import ReactionSection from '../components/ReactionSection';
+import AddCommentForm from '../components/AddCommentForm';
+import { API_BASE_URL } from '../config'; // Base URL Import
+import "./ArticlePage.css";
 
-class AboutPage extends Component {
-  render() {
-    return (
-      <div className="about-page">
+class ArticlePage extends Component {
+    state = {
+        articleInfo: {
+            upvotes: 0, 
+            downvotes: 0, 
+            comments: [],
+        },
+        loading: true,
+        error: false
+    };
 
-        <section className="about-hero">
+    componentDidMount() {
+        this.fetchData();
+    }
 
-          <h1>About BlogSphere</h1>
+    componentDidUpdate(prevProps) {
+        if (prevProps.params.name !== this.props.params.name) {
+            this.fetchData();
+        }
+    }
 
-          <p>
-            BlogSphere is a modern MERN Stack blog platform created for students,
-            beginners, and developers who want to learn web development through
-            simple, practical, and easy-to-understand articles.
-          </p>
+    fetchData = async () => {
+        const { name } = this.props.params;
+        try {
+            const result = await fetch(`${API_BASE_URL}/api/articles/${name}`);
+            if (!result.ok) {
+                throw new Error(`Server returned ${result.status}`);
+            }
+            const body = await result.json();
+            
+            // Safe fallback logic
+            this.setState({
+                articleInfo: {
+                    upvotes: body.upvotes || 0,
+                    downvotes: body.downvotes || 0,
+                    comments: body.comments || []
+                },
+                loading: false,
+                error: false
+            });
+        } catch (err) {
+            console.error("Failed to fetch article info:", err);
+            this.setState({ 
+                loading: false, 
+                error: true,
+                articleInfo: { upvotes: 0, downvotes: 0, comments: [] }
+            });
+        }
+    };
 
-        </section>
+    setArticleInfo = (body) => {
+        if (body) {
+            this.setState({
+                articleInfo: {
+                    upvotes: body.upvotes || 0,
+                    downvotes: body.downvotes || 0,
+                    comments: body.comments || []
+                }
+            });
+        }
+    };
 
-        <section className="about-card">
+    render() {
+        const { name } = this.props.params;
+        const { articleInfo } = this.state;
 
-          <h2>🎯 Our Mission</h2>
+        const article = articleContent.find(
+            (article) => article.name === name
+        );
+        
+        if (!article) {
+            return <div className="article-page"><h1>Article does not exist</h1></div>;
+        }
 
-          <p>
-            Our mission is to make learning programming easier by providing
-            high-quality articles on React, Node.js, JavaScript, MongoDB, and
-            career guidance. We believe that learning should be simple,
-            interactive, and accessible for everyone.
-          </p>
+        const otherArticles = articleContent.filter(
+            (article) => article.name !== name
+        );
 
-        </section>
-
-        <section className="feature-grid">
-
-          <div className="feature-card">
-            <span>⚛️</span>
-            <h3>Frontend</h3>
-            <p>Learn React, JavaScript, HTML, CSS and modern UI development.</p>
-          </div>
-
-          <div className="feature-card">
-            <span>🟢</span>
-            <h3>Backend</h3>
-            <p>Understand Node.js, Express.js, APIs and MongoDB.</p>
-          </div>
-
-          <div className="feature-card">
-            <span>🚀</span>
-            <h3>Career Growth</h3>
-            <p>Get useful tips, resources and guidance for your developer journey.</p>
-          </div>
-
-        </section>
-
-      </div>
-    );
-  }
+        return (
+            <div className='article-page'>
+                <article className='article-container'>
+                    <h1>{article.title}</h1>
+                    <span className='article-category'>
+                        🚀 {article.category}
+                    </span>
+                    <ReactionSection
+                        articleName={name}
+                        upvotes={articleInfo.upvotes}
+                        downvotes={articleInfo.downvotes}
+                        setArticleInfo={this.setArticleInfo}
+                    />
+                    <div className='article-content'>
+                        {article.content.map((paragraph, key) => (
+                            <p key={key}>{paragraph}</p>
+                        ))}
+                    </div>
+                </article>
+                <section className='comments-section'>
+                    <CommentsList
+                        comments={articleInfo.comments}
+                        articleName={name}
+                        setArticleInfo={this.setArticleInfo}
+                    />
+                    <AddCommentForm
+                        articleName={name}
+                        setArticleInfo={this.setArticleInfo}
+                    />
+                </section>
+                <ArticleList articless={otherArticles} />
+            </div>
+        );
+    }
 }
 
+function ArticlePageWrapper() {
+    const params = useParams();
+    return <ArticlePage params={params} />;
+}
 
-
-export default AboutPage;
+export default ArticlePageWrapper;
