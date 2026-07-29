@@ -13,7 +13,7 @@
     font-weight:800;
     margin-bottom:18px;
     position:relative;
-    max-width: 1000px;
+    max-width: 700px;
 }
 
 .home-page h1::after{
@@ -28,7 +28,7 @@
 
 .home-page p{
     margin-top:28px;
-    max-width:900px;
+    max-width:800px;
     font-size:1.15rem;
     line-height:1.9;
     color:#64748b;
@@ -131,20 +131,64 @@
     line-height:1.7;
 }
 
+
 /* ================= RESPONSIVE ================= */
 
-@media(max-width:768px){
+@media (max-width: 768px) {
+
+    .home-page{
+        padding:25px 18px 50px;
+    }
 
     .home-page h1{
-        font-size:2.5rem;
+        font-size:2.2rem;
+        line-height:1.3;
+        margin-bottom:15px;
+    }
+
+    .home-page h1::after{
+        width:70px;
+        height:5px;
+        margin-top:14px;
     }
 
     .home-page p{
+        margin-top:20px;
         font-size:1rem;
+        line-height:1.8;
+    }
+
+    .hero-btn{
+        width:100%;
+        padding:14px;
+        margin-top:28px;
+        margin-bottom:50px;
     }
 
     .home-highlight{
-        padding:28px;
+        margin-top:50px;
+        padding:22px;
+        border-radius:18px;
+    }
+
+    .home-highlight h2{
+        font-size:1.6rem;
+    }
+
+    .feature-grid{
+        gap:18px;
+    }
+
+    .feature-card{
+        padding:22px;
+    }
+
+    .feature-card span{
+        font-size:1.7rem;
+    }
+
+    .feature-card h3{
+        font-size:1.2rem;
     }
 
 }
