@@ -1,33 +1,25 @@
-import React,{Component} from "react";
+import React, { Component } from "react";
 import "./CommentsList.css";
 import Comment from "./Comment";
 
 class CommentsList extends Component {
     render() {
+        const { comments = [], articleName, setArticleInfo } = this.props;
 
-        const { comments, articleName, setArticleInfo } = this.props;
         return (
             <div className="comments-section">
-
-                <h3>Comments : ({comments.length})</h3>
-                {comments.map((comment, key) => {
-                   
-                    return (
-                        <Comment
-                            key={comment.id}
-                            comment={comment}
-                            articleName={articleName}
-                            setArticleInfo={setArticleInfo}
-                        />
-
-                    )
-
-                })}
-
+                <h3>Comments : ({comments ? comments.length : 0})</h3>
+                {comments && comments.map((comment) => (
+                    <Comment
+                        key={comment.id || Math.random()}
+                        comment={comment}
+                        articleName={articleName}
+                        setArticleInfo={setArticleInfo}
+                    />
+                ))}
             </div>
         );
     }
 }
-
 
 export default CommentsList;
