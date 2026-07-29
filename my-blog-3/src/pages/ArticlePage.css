@@ -73,11 +73,11 @@
 @media (max-width:768px){
 
 .article-page{
-    padding:25px 18px;
+    padding:25px 14px;
 }
 
 .article-container{
-    padding:24px;
+    padding:24px 18px;
     border-radius:18px;
 }
 
@@ -87,7 +87,7 @@
 
 .article-container h1{
     font-size:2.2rem;
-    line-height:1.3;
+    line-height:1.25;
     margin-bottom:20px;
 }
 
@@ -103,7 +103,7 @@
 
 .comments-section{
     margin-top:40px;
-    padding:22px;
+    padding:22px 16px;
     border-radius:18px;
 }
 
