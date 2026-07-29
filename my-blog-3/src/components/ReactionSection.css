@@ -1,13 +1,15 @@
 .vote-section{
     display:flex;
-    gap: 18px;
-    margin: 35px 0;
-    align-items: center;
-    background: #f8fbff;
-    padding: 18px 24px;
-    border-radius: 18px;
-    box-shadow: 0 10px 25px rgba(15,23,42,.08);
-    width: fit-content;
+    gap:12px;
+    margin:35px 0;
+    align-items:center;
+    background:#f8fbff;
+    padding:18px 24px;
+    border-radius:18px;
+    box-shadow:0 10px 25px rgba(15,23,42,.08);
+
+    width:100%;
+    flex-wrap:wrap;
 }
 
 .vote-btn{
@@ -20,7 +22,10 @@
     cursor: pointer;
     font-size: 16px;
     font-weight: 600;
-    transition: all .3s ease;
+    transition:
+    transform .3s ease,
+    background .3s ease,
+    box-shadow .3s ease;
     border-radius: 12px;
 }
 
@@ -44,7 +49,7 @@
 .like-btn:hover{
     background: #bbf7d0;
     transform:translateY(-3px);
-    box-shadow: 0 8px rgba(34,197,94,.25);
+    box-shadow:0 8px 18px rgba(34,197,94,.25);
 }
 
 .dislike-btn{
@@ -63,4 +68,31 @@
     color:#334155;
     font-weight: 600;
     margin: 0;
+}
+
+@media (max-width:768px){
+
+.vote-section{
+    flex-direction:column;
+    align-items:stretch;
+    gap:15px;
+    padding:18px;
+}
+
+.vote-btn{
+    width:100%;
+    justify-content:center;
+    padding:12px;
+    font-size:15px;
+}
+
+.vote-btn svg{
+    font-size:18px;
+}
+
+.reaction-heading h4{
+    text-align:center;
+    margin-bottom:5px;
+}
+
 }
