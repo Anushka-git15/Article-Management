@@ -71,3 +71,47 @@
     font-weight:bold;
     color:#2563eb;
 }
+
+@media (max-width: 768px) {
+
+    .article-container{
+        max-width: 100%;
+        width: 100%;
+        padding: 0 16px;
+    }
+
+    .page-title{
+        font-size: 2rem;
+        margin: 30px 0;
+    }
+
+    .page-title::after{
+        width: 60px;
+        height: 4px;
+    }
+
+    .article-list{
+        gap: 18px;
+    }
+
+    .article-list-item{
+        width: 100%;
+        padding: 18px;
+        border-radius: 14px;
+    }
+
+    .article-list-item h2{
+        font-size: 1.3rem;
+    }
+
+    .article-list-item p{
+        font-size: .95rem;
+        line-height: 1.6;
+    }
+
+    .read-more{
+        margin-top: 14px;
+        font-size: .95rem;
+    }
+
+}
