@@ -6,7 +6,7 @@ class ReactionSection extends Component {
 
     UpvoteArticle = async () => {
         const { articleName, setArticleInfo } = this.props;
-        const result = await fetch(`/api/articles/${articleName}/upvote`, {
+        const result = await fetch(`https://YOUR-RENDER-APP-NAME.onrender.com/api/articles/${articleName}/upvote`, {
             method: 'post',
         });
 
@@ -18,7 +18,7 @@ class ReactionSection extends Component {
 
     DownvoteArticle = async () => {
         const { articleName, setArticleInfo } = this.props;
-        const result = await fetch(`/api/articles/${articleName}/downvote`, {
+        const result = await fetch(`https://YOUR-RENDER-APP-NAME.onrender.com/api/articles/${articleName}/downvote`, {
             method: 'post',
         });
 
