@@ -32,6 +32,16 @@ h3{
    color:#1e293b;
 }
 
+@media (max-width:768px){
+
+    #page-body{
+        max-width:100%;
+        width:100%;
+        padding:20px 16px 50px;
+    }
+
+}
+
 p{
    color:#475569;
    line-height:1.8;
