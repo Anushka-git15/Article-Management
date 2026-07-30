@@ -34,48 +34,48 @@ app.get('/api/articles/:name', async (req, res) => {
     }, res);
 });
 
-
-// upvote end-point
-// api/articles/:name/upvote
+// Upvote Endpoint
 app.post('/api/articles/:name/upvote', async (req, res) => {
+    const articleName = req.params.name;
+
     withDB(async (db) => {
-        const articleName = req.params.name;
+        // $inc dynamic upvote badhayega, fetch karne ki zaroorat nahi
+        await db.collection('articles').updateOne(
+            { name: articleName },
+            { $inc: { upvotes: 1 } }
+        );
 
-        const articlesInfo = await db.collection('articles').findOne({ name: articleName });
-
-        await db.collection('articles').updateOne({ name: articleName }, {
-            '$set': {
-                upvotes: articlesInfo.upvotes + 1,
-            }
-        });
-
+        // Updated document fetch karke response bhej do
         const updatedArticlesInfo = await db.collection('articles').findOne({ name: articleName });
 
+        if (!updatedArticlesInfo) {
+            return res.status(404).json({ message: "Article not found" });
+        }
+
         res.status(200).json(updatedArticlesInfo);
-
     }, res);
-
 });
 
-// downvote end-point
-// api/articles/:name/downvote
+// Downvote Endpoint
 app.post("/api/articles/:name/downvote", async (req, res) => {
+    const articleName = req.params.name;
+
     withDB(async (db) => {
-        const articleName = req.params.name;
-
-        const articlesInfo = await db.collection('articles').findOne({ name: articleName });
-
-        await db.collection('articles').updateOne({ name: articleName }, {
-            '$set': {
-                downvotes: articlesInfo.downvotes + 1,
-            }
-        });
+        await db.collection('articles').updateOne(
+            { name: articleName },
+            { $inc: { downvotes: 1 } }
+        );
 
         const updatedArticlesInfo = await db.collection('articles').findOne({ name: articleName });
+
+        if (!updatedArticlesInfo) {
+            return res.status(404).json({ message: "Article not found" });
+        }
 
         res.status(200).json(updatedArticlesInfo);
     }, res);
 });
+
 
 
 
