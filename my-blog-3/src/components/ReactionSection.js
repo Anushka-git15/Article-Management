@@ -8,6 +8,9 @@ class ReactionSection extends Component {
         const { articleName, setArticleInfo } = this.props;
         const result = await fetch(`https://YOUR-RENDER-APP-NAME.onrender.com/api/articles/${articleName}/upvote`, {
             method: 'post',
+            headers: {
+            'Content-Type': 'application/json'
+        }
         });
 
         const body = await result.json();
@@ -20,6 +23,9 @@ class ReactionSection extends Component {
         const { articleName, setArticleInfo } = this.props;
         const result = await fetch(`https://YOUR-RENDER-APP-NAME.onrender.com/api/articles/${articleName}/downvote`, {
             method: 'post',
+            headers: {
+            'Content-Type': 'application/json'
+        }
         });
 
         const body = await result.json();
