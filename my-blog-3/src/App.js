@@ -19,7 +19,7 @@ class App extends Component{
       <Router>
       
        <div id="page-body">
-       <div className='App'>
+ 
         <NavBar/>
         
           <Routes>
@@ -28,9 +28,10 @@ class App extends Component{
             <Route path="/article-list" Component={Article}/>
             <Route path="/articles/:name" Component={ArticlePageWrapper}/>
           </Routes>
-          <Footer/>
+       
+       
         </div>
-        </div>
+         <Footer/>
      </Router>
 
     )
